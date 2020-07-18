@@ -6,9 +6,10 @@ namespace App\Controller\Admin\Fields;
 
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class VichImageField implements  FieldInterface
+class VichFileField implements  FieldInterface
 {
     use FieldTrait;
 
@@ -17,10 +18,10 @@ class VichImageField implements  FieldInterface
 
         return (new self())
            ->setProperty($propertyName)
-           ->setTemplatePath('')
+           ->setTemplatePath('video.html.twig')
            ->setLabel($label)
             ->setValue('')
 
-           ->setFormType(VichImageType::class);
+           ->setFormType(VichFileType::class);
     }
 }

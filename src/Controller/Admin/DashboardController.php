@@ -40,17 +40,24 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Dashboard');
-        yield MenuItem::linkToCrud('Cursos', 'fa fa-graduation-cap', Course::class);
-        yield MenuItem::linkToCrud('Lecciones', 'fa-chalkboard-teacher', Lesson::class);
+        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home')->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
 
-        yield MenuItem::linkToCrud('Test', 'fa fa-book-open', Test::class);
-        yield MenuItem::linkToCrud('Preguntas', 'fa fa-question', Question::class);
-        yield MenuItem::linkToCrud('Respuestas', 'fa fa-reply', Reply::class);
+        yield MenuItem::linkToCrud('Cursos', 'fa fa-graduation-cap', Course::class)
+            ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
+        yield MenuItem::linkToCrud('Lecciones', 'fa fa-chalkboard-teacher', Lesson::class)
+                ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
+
+        yield MenuItem::linkToCrud('Test', 'fa fa-book-open', Test::class)
+                        ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
+        yield MenuItem::linkToCrud('Preguntas', 'fa fa-question', Question::class)
+                         ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
+        yield MenuItem::linkToCrud('Respuestas', 'fa fa-reply', Reply::class)
+                        ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
         yield MenuItem::linkToCrud('Usuario', 'fa fa-user', User::class)
-                                    ->setController(UserCrudController::class);
-       // yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
+                        ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center')
+                        ->setController(UserCrudController::class);
+        yield MenuItem::linkToLogout('Salir', 'fa fa-exit')
+                        ->setCssClass('sidebar-brand d-flex align-items-center justify-content-center');
 
         // yield MenuItem::linkToCrud('The Label', 'icon class', EntityClass::class);
     }
@@ -61,22 +68,22 @@ class DashboardController extends AbstractDashboardController
         // if you prefer to create the user menu from scratch, use: return UserMenu::new()->...
         return parent::configureUserMenu($user)
             // use the given $user object to get the user name
-            ->setName($user->getFullName())
+            ->setName($user->getName())
             // use this method if you don't want to display the name of the user
             ->displayUserName(false)
 
             // you can return an URL with the avatar image
             ->setAvatarUrl('https://...')
-            ->setAvatarUrl($user->getProfileImageUrl())
+           // ->setAvatarUrl($user->getProfileImageUrl())
             // use this method if you don't want to display the user image
             ->displayUserAvatar(false)
             // you can also pass an email address to use gravatar's service
-            ->setGravatarEmail($user->getMainEmailAddress())
+            ->setGravatarEmail($user->getEmail())
 
             // you can use any type of menu item, except submenus
             ->addMenuItems([
-                MenuItem::linkToRoute('My Profile', 'fa fa-id-card', '...', ['...' => '...']),
-                MenuItem::linkToRoute('Settings', 'fa fa-user-cog', '...', ['...' => '...']),
+               // MenuItem::linkToRoute('My Profile', 'fa fa-id-card', '...', ['...' => '...']),
+              //  MenuItem::linkToRoute('Settings', 'fa fa-user-cog', '...', ['...' => '...']),
                 MenuItem::section(),
                 MenuItem::linkToLogout('Logout', 'fa fa-sign-out'),
             ]);

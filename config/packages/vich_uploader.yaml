@@ -4,4 +4,7 @@ vich_uploader:
     mappings:
         course:
             uri_prefix: '%app.path.course_images%'
-            upload_destination: '%kernel.project_dir%/public%app.path.course_images%'
+            upload_destination: '%kernel.project_dir%/public/%app.path.course_images%'
+        lessons:
+            uri_prefix: '%app.path.lessons_videos%'
+            upload_destination: '%kernel.project_dir%/public/%app.path.lessons_videos%'

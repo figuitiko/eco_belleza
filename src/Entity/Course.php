@@ -62,6 +62,8 @@ class Course
      */
     private $tests;
 
+
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -212,13 +214,16 @@ class Course
         return $this->imageFile;
     }
 
-    public function setImage($image)
+    public function setImage(?string $image):self
     {
         $this->image = $image;
+        return $this;
     }
 
     public function getImage()
     {
         return $this->image;
     }
+
+
 }

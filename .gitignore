@@ -15,3 +15,5 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+/startbootstrap-sb-admin-2-gh-pages
+/webuni

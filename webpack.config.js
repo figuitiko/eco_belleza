@@ -24,8 +24,14 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addStyleEntry('sb-admin-css', './assets/css/sb-admin-2.min.css')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
+
+    .addEntry('sb-admin', './assets/js/sb-admin-2.min.js')
+    //.addEntry('dataTable-bootstrap', './assets/js/dataTables.bootstrap4.min.js')
+    .addEntry('datatable_demo', './assets/js/datatables-demo.js')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -53,8 +59,19 @@ Encore
         config.corejs = 3;
     })
 
+    .copyFiles({
+        from: './assets/img',
+        to: 'images/[path] [name].[hash:8].[ext]'
+
+    })
+
     // enables Sass/SCSS support
     //.enableSassLoader()
+
+    //.enableSassLoader()
+    .enableVueLoader(()=>{},{
+        useJsx:true
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
