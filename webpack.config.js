@@ -25,12 +25,19 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addStyleEntry('sb-admin-css', './assets/css/sb-admin-2.min.css')
+    .addStyleEntry('owl_carousel_css', './assets/css/owl.carousel.css')
+    .addStyleEntry('style_css', './assets/css/style.css')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     .addEntry('sb-admin', './assets/js/sb-admin-2.min.js')
     //.addEntry('dataTable-bootstrap', './assets/js/dataTables.bootstrap4.min.js')
     .addEntry('datatable_demo', './assets/js/datatables-demo.js')
+    .addEntry('main_js', './assets/js/front/main.js')
+    .addEntry('mixitup_js', './assets/js/front/mixitup.min.js')
+    .addEntry('owl_carousel_min_js', './assets/js/front/owl.carousel.min.js')
+    .addEntry('circle_progress_min_js', './assets/js/front/circle-progress.min.js')
+
 
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -71,7 +78,7 @@ Encore
     //.enableSassLoader()
     .enableVueLoader(()=>{},{
         useJsx:true
-    })
+    }, { runtimeCompilerBuild: false })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

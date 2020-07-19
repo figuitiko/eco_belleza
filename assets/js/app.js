@@ -18,12 +18,20 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from "vue-axios";
 import store from './store/store'
+import courseMainComponent from "./components/course/courseMainComponent";
+import headerComponent from "./components/headerComponent";
+import footerComponent from "./components/footerComponent";
 
 
+
+
+
+Vue.component('course-main',courseMainComponent );
+Vue.component('my-header',headerComponent );
+Vue.component('my-footer',footerComponent );
 
 Vue.use(VueAxios,axios);
-
-
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';

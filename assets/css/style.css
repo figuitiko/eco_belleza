@@ -163,7 +163,7 @@ ol {
 
 .site-btn {
 	display: inline-block;
-	min-width: 196px;
+	min-width: 130px;
 	text-align: center;
 	border: none;
 	padding: 15px 10px;
@@ -174,11 +174,31 @@ ol {
 	cursor: pointer;
 	background: #d82a4e;
 }
-
-.site-btn:hover {
-	color: #fff;
+.site-btn-register {
+	display: inline-block;
+	min-width: 130px;
+	text-align: center;
+	border: none;
+	padding: 15px 10px;
+	font-weight: 600;
+	font-size: 16px;
+	position: relative;
+	color: #d82a4e;
+	cursor: pointer;
+	background: #fff;
+}
+.banner-section{
+	border-bottom: 3px solid #d82a4e;
 }
 
+.site-btn:hover {
+	color: #d82a4e;
+	background: #fff;
+}
+.site-btn-register:hover {
+	color: #fff;
+	background: #d82a4e;
+}
 .site-btn.btn-dark {
 	background: #000;
 }
@@ -844,6 +864,10 @@ ol {
 
 .page-info-section {
 	height: 443px;
+	background-image: url("../img/page-bg/1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top center;
 }
 
 .site-breadcrumb {
