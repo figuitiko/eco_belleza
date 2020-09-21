@@ -2,21 +2,18 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\Fields\VichFileField;
-use App\Controller\Admin\Fields\VichImageField;
-use App\Controller\Admin\Fields\VichVideoField;
-use App\Entity\Course;
 use App\Entity\Lesson;
-use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class LessonCrudController extends AbstractCrudController
 {
@@ -25,33 +22,33 @@ class LessonCrudController extends AbstractCrudController
         return Lesson::class;
     }
 
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setEntityLabelInSingular('Leccion')
-            ->setEntityLabelInPlural('Lecciones')
-            ->setSearchFields(['id', 'title', 'description', 'image']);
-    }
+
     public function configureFields(string $pageName): iterable
     {
-        $videoUrl = $this->getParameter('app.path.lessons_videos');
-
         $id = IntegerField::new('id', 'ID');
-        $title = TextField::new('title', 'Titulo');
-        $course =  AssociationField::new('course','Curso');
-        $description = TextEditorField::new('description','Descripción');
-        $videoUrl = ImageField::new('videoUrl', 'Video');
-        $videoFile = VichFileField::new('videoFile');
+        $title = TextField::new('title');
+        $description = TextareaField::new('description');
+        $image = ImageField::new('imgUrl')->setBasePath('uploads/images/lessons');
+        $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class);
+        $course = AssociationField::new('course');
+        $createdAt = DateTimeField::new('createdAt');
+        $video = ImageField::new('videoFile')->setFormType(VichFileType::class);
+
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$id, $title,$description];
+            return [$id, $title, $image, $createdAt->setFormat('short', 'short')];
         }
 
         return [
-            FormField::addPanel('Información Basica'),
-            $title,$description,$course,
-            FormField::addPanel('Abjuntos'),
-            $videoFile
+            FormField::addPanel('Basic information'),
+            $title, $description,$course,
+            FormField::addPanel('Product Details'),
+             $createdAt,
 
+
+            FormField::addPanel('Attachments'),
+            // TODO: fix this, which doesn't work for some unknown reason
+            //$imageFile,
+            $imageFile,$video
         ];
     }
 

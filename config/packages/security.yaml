@@ -18,13 +18,19 @@ security:
             anonymous: true
             lazy: true
             provider: app_user_provider
+            json_login:
+                check_path: json_login
+                username_path: email
+                password_path: password
+            form_login:
+                remember_me: true
             guard:
                 authenticators:
                     - App\Security\AppAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: app_login
+                #target: default
             remember_me:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds

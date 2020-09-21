@@ -1,10 +1,36 @@
+knp_gaufrette:
+    stream_wrapper: ~
+
+    adapters:
+        course_adapter:
+            local:
+                directory: '%kernel.project_dir%/public/%app.path.course_images%'
+        lesson_adapter_img:
+            local:
+                directory: '%kernel.project_dir%/public/%app.path.lessons_images%'
+        lesson_adapter_video:
+            local:
+                directory: '%kernel.project_dir%/public/%app.path.lessons_videos%'
+
+    filesystems:
+        course_image_fs:
+            adapter: course_adapter
+        lesson_image_fs:
+            adapter: lesson_adapter_img
+        lesson_video_fs:
+            adapter: lesson_adapter_video
+
 vich_uploader:
     db_driver: orm
+    storage: gaufrette
 
     mappings:
         course:
             uri_prefix: '%app.path.course_images%'
-            upload_destination: '%kernel.project_dir%/public/%app.path.course_images%'
-        lessons:
+            upload_destination: course_image_fs
+        lessons_video:
             uri_prefix: '%app.path.lessons_videos%'
-            upload_destination: '%kernel.project_dir%/public/%app.path.lessons_videos%'
+            upload_destination: lesson_video_fs
+        lessons_img:
+            uri_prefix: '%app.path.lessons_images%'
+            upload_destination: lesson_image_fs

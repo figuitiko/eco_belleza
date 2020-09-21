@@ -12,3 +12,266 @@
 .img-size img{
     width: 5%;
 }
+ .invalid{
+    border: 1px solid red;
+    background-color: #ffc9aa;
+
+}
+
+  .invalidLabel{
+    color: red;
+
+}
+
+.page-enter-active, .page-leave-active {
+    transition: opacity 1s, transform 1s;
+}
+.page-enter, .page-leave-to {
+    opacity: 0;
+    transform: translateX(-30%);
+}
+
+nav.main-menu  i{
+    color: white;
+    font-size: 28px;
+}
+nav.main-menu  span{
+    background-color: red;
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    display: block;
+    margin-left: 20px;
+    margin-bottom: -10px;
+}
+.contact-page{
+    margin-top: 60px;
+}
+.want-it{
+    width: 100%;
+    color: white;
+    background-color: red;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    height: 40px;
+    cursor: pointer;
+
+}
+.view-it{
+    width: 100%;
+    color: white;
+    background-color: #17a2b8;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    height: 40px;
+    cursor: pointer;
+
+}
+
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
+.btn-mpay {
+    color: #f4b619;
+    background-color: #f8f9fa;
+    border: 1px solid #0B7FC7 ;
+}
+.btn-mpay:hover,
+.btn-mpay:active{
+    color: #0B7FC7!important;
+    background-color: #f4b619!important;
+
+}
+
+.btn-ppay {
+    color: #0B7FC7;
+    background-color: #f8f9fa;
+    border: 1px solid #f4b619 ;
+}
+
+.btn-ppay:hover,
+.btn-ppay:active{
+    color: #f4b30d!important;
+    background-color: #0B7FC7!important;
+
+}
+
+
+
+
+/* Accordion styles */
+.tabs {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+}
+
+.tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+.tab-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: #2c3e50;
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+}
+.tab-label:hover {
+    background: #1a252f;
+}
+.tab-label::after {
+    content: "❯";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all 0.35s;
+}
+.tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: #2c3e50;
+    background: white;
+    transition: all 0.35s;
+}
+.tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: #2c3e50;
+    cursor: pointer;
+}
+.tab-close:hover {
+    background: #1a252f;
+}
+.tab input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+.tab input:checked + .tab-label {
+    background: #1a252f;
+}
+.tab input:checked + .tab-label::after {
+    transform: rotate(90deg);
+}
+.tab input:checked ~ .tab-content {
+    max-height: 100vh;
+    padding: 1em;
+}
+
+.actions-lesson{
+    display: flex;
+    width: 100%;
+ align-items: center;
+    flex-flow: column;
+
+}
+.actions-lesson  i {
+
+
+    font-size: 20px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.realated-courses .rc-title{
+    margin: 20px!important;
+}
+
+
+.course-warp {
+    padding: 10px 15px !important;
+}
+
+
+
+.single-lesson-list {
+    list-style: none;
+    counter-reset: cupcake;
+    padding-left: 32px;
+}
+.single-lesson-list li {
+    counter-increment: cupcake;
+    margin: 10px 0;
+}
+.single-lesson-list li:before {
+    content: counters(cupcake, ".") ". ";
+}
+.single-lesson-list li.active {
+   background-color: #c0bec7;
+    border-radius: 5px;
+
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    transition: opacity 1s;
+}
+
+.fade-leave {
+    /*opacity: 1;*/
+}
+
+.fade-leave-active {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+.search-section.ss-other-page .search-warp{
+    width: 70%;
+    margin: auto;
+}
+
+#preloder-1{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background: #fff;
+}
+.list-courses-title{
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #d82a4e;
+    padding: 12px 10px 5px;
+    margin: 0 10px;
+    border-bottom: 4px solid #d82a4e;
+    cursor: pointer;
+}
+.logout-btn {
+    height: 50px;
+    display: inline-block;
+    min-width: 130px;
+    text-align: center;
+    border: none;
+    padding: 15px 10px;
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    color: #d82a4e;
+    background: #fff;
+
+}

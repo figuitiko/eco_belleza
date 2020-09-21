@@ -1,175 +1,105 @@
 <template>
+    <div>
     <section class="course-section spad pb-0">
         <div class="course-warp">
-            <ul class="course-filter controls">
-                <li class="control active" data-filter="all">All</li>
-                <li class="control" data-filter=".finance">Finance</li>
-                <li class="control" data-filter=".design">Design</li>
-                <li class="control" data-filter=".web">Web Development</li>
-                <li class="control" data-filter=".photo">Photography</li>
-            </ul>
-            <div class="row course-items-area">
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>Art & Crafts</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 design">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/2.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 web">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/3.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>Graphic Design</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/3.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/4.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/4.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/5.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/5.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 design">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/6.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>Socia Media</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/6.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 web">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/7.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/7.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/8.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>HTML 5</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/8.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-md-12 text-center mb-5 mt-5">
+                    <h5 class="list-courses-title">{{dynamicTitle}}</h5>
                 </div>
             </div>
 
+
+            <div class="row course-items-area" v-if="courses.length >=1"  >
+
+                <!-- course -->
+
+                <course-single-component
+                        v-for="course of courses"
+                        :key="course.id"
+                        :price="course.price"
+                        :imgUrl="course.image"
+                        :title="course.title"
+                        :description="course.description"
+                        :studentsAmount="course.users"
+                        :iriCourse="course['@id']"
+                        :courseId="course.id"
+
+                            ></course-single-component>
+
+            </div>
+        <div class="row d-flex justify-content-center">
+            <b-pagination
+                    v-model="currentPage"
+                    :total-rows="rows"
+                    :per-page="perPage"
+                    aria-controls="my-table"
+            ></b-pagination>
+        </div>
+
+
         </div>
     </section>
+    </div>
 </template>
 
 <script>
+    import courseSingleComponent from "./courseSingleComponent";
+    import callToActionComponent from "./callToActionComponent";
+    import {mapGetters} from  'vuex';
+    import * as types from "../../modules/types";
     export default {
-        name: "courseListComponent"
+        name: "courseListComponent",
+        components:{courseSingleComponent},
+        props:['courses'],
+        data(){
+            return {
+                perPage: 8,
+                allCourses: []
+
+            }
+        },
+
+        mounted() {
+            console.log(this.rows)
+
+        },
+
+
+        computed:{
+
+            ...mapGetters({
+                totalCourses: types.COURSES_TOTAL_ITEMS,
+
+            }),
+            dynamicTitle(){
+                if(this.$route.name === 'my'){
+                    return 'Todos mis cursos'
+                }
+                else if(this.$route.name === 'search'){
+                    return 'Resultados De la busqueda'
+                }
+                else {
+                    return 'Todos los Cursos'
+                }
+            },
+            rows(){
+               return this.totalCourses;
+            },
+            currentPage: {
+                get() {
+
+                    return this.$store.getters[types.COURSES_CURRENT_PAGE];
+                },
+                set(value) {
+
+                    return this.$store.dispatch( types.UPDATE_COURSE_CURRENT_PAGE, value);
+                }
+            }
+        },
+
+
+
+
     }
 </script>
 

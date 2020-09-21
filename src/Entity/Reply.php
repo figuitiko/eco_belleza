@@ -7,7 +7,6 @@ use App\Repository\ReplyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=ReplyRepository::class)
  */
 class Reply

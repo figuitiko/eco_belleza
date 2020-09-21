@@ -5,6 +5,7 @@
 {% block head_stylesheets %}
 {{ parent() }}
   {{ encore_entry_link_tags('sb-admin-css') }}
+  {{ encore_entry_link_tags('dropzone_css') }}
 {% endblock head_stylesheets %}
 
 {% block body %}
@@ -173,12 +174,18 @@
               </footer>
 
 
+
               {% endblock wrapper %}
 
     </div>
   {% endblock wrapper_wrapper %}
 
-  {% block body_javascript %}{% endblock body_javascript %}
+  {% block body_javascript %}
+
+
+
+
+  {% endblock body_javascript %}
 
   {% block configured_javascripts %}
     {% for js_asset in ea.assets.jsFiles ?? [] %}

@@ -2,31 +2,60 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+
 
 /**
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *      },
+ *     itemOperations={"get"={
+ *           "normalization_context"={"groups"={"users:read","user:item:get"}}
+ *          },
+ *
+ *          },
+ *     normalizationContext={"groups"={"users:read"}},
+ *     denormalizationContext={"groups"={"users:write"}},
+ *
+ *
+ *
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity("email")
+ * @ApiFilter(SearchFilter::class, properties={"email":"exact"})
  */
 class User implements UserInterface
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"users:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"users:read","users:write","usersCourses:read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     *  @Groups({"users:read"})
      */
     private $roles = [];
 
@@ -36,19 +65,38 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Course::class, mappedBy="users")
-     */
-    private $courses;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users:read","users:write","usersCourses:read"})
      */
     private $name;
+
+    /**
+     * @Groups({"users:write"})
+     * @SerializedName("password")
+     */
+    private $plainPassword;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="user")
+     */
+    private $userCourses;
+
+
+
+
+
+
+
+
 
     public function __construct()
     {
         $this->courses = new ArrayCollection();
+        $this->course = new ArrayCollection();
+        $this->userCourses = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -126,36 +174,10 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+         $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection|Course[]
-     */
-    public function getCourses(): Collection
-    {
-        return $this->courses;
-    }
 
-    public function addCourse(Course $course): self
-    {
-        if (!$this->courses->contains($course)) {
-            $this->courses[] = $course;
-            $course->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCourse(Course $course): self
-    {
-        if ($this->courses->contains($course)) {
-            $this->courses->removeElement($course);
-            $course->removeUser($this);
-        }
-
-        return $this;
-    }
 
     public function getName(): ?string
     {
@@ -172,5 +194,52 @@ class User implements UserInterface
     {
         return $this->getName();
     }
+
+
+    public function getPlainPassword():?string
+    {
+        return $this->plainPassword;
+    }
+
+
+    public function setPlainPassword($plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserCourse[]
+     */
+    public function getUserCourses(): Collection
+    {
+        return $this->userCourses;
+    }
+
+    public function addUserCourse(UserCourse $userCourse): self
+    {
+        if (!$this->userCourses->contains($userCourse)) {
+            $this->userCourses[] = $userCourse;
+            $userCourse->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCourse(UserCourse $userCourse): self
+    {
+        if ($this->userCourses->contains($userCourse)) {
+            $this->userCourses->removeElement($userCourse);
+            // set the owning side to null (unless already changed)
+            if ($userCourse->getUser() === $this) {
+                $userCourse->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 
 }

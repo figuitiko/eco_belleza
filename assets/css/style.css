@@ -130,8 +130,8 @@ ol {
 }
 
 .spad {
-	padding-top: 115px;
-	padding-bottom: 115px;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 .text-white h1,
@@ -189,6 +189,7 @@ ol {
 }
 .banner-section{
 	border-bottom: 3px solid #d82a4e;
+	margin-top: 60px;
 }
 
 .site-btn:hover {
@@ -293,7 +294,7 @@ ol {
 }
 
 .main-menu ul li {
-	display: inline;
+	display: inline-block;
 }
 
 .main-menu ul li a {
@@ -443,7 +444,7 @@ ol {
 }
 
 .search-section.ss-other-page {
-	margin-top: -85px;
+	margin-top: -120px;
 }
 
 .search-section.ss-other-page .search-warp {
@@ -863,7 +864,7 @@ ol {
 =======================*/
 
 .page-info-section {
-	height: 443px;
+	height: 380px;
 	background-image: url("../img/page-bg/1.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -1667,6 +1668,22 @@ ol {
 	}
 	.signup-warp {
 		padding: 0 60px;
+
+	}
+	.search-section.ss-other-page{
+		margin-top: 80px;
+	}
+	.header-btn-position{
+		margin-left: 200px;
+		margin-top: 200px;
+	}
+	.site-breadcrumb{
+		padding-top: 315px;
+	}
+
+	.logout-btn{
+		margin-top: -30px;
+		margin-left: 200px;
 	}
 	.signup-section .signup-bg {
 		display: none;
@@ -1734,6 +1751,14 @@ ol {
 	.course-meta-area .price-btn {
 		margin-bottom: 20px;
 	}
+	.logout-btn{
+
+		margin-left: 200px;
+	}
+	.header-btn-position{
+		margin-left: 60px;
+		margin-top: 150px;
+	}
 }
 
 /* Small Mobile :320px. */
@@ -1777,5 +1802,13 @@ ol {
 	}
 	.contact-info-area .social-links a {
 		margin-right: 10px;
+	}
+	.logout-btn{
+
+		margin-left: 40px;
+	}
+	.header-btn-position{
+		margin-left: 0;
+		margin-top: 150px;
 	}
 }

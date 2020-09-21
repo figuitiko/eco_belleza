@@ -7,7 +7,6 @@ use App\Repository\QuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
  */
 class Question

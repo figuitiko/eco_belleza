@@ -43,14 +43,14 @@ $(window).on('load', function() {
 	/*------------------
 		Background Set
 	--------------------*/
-	setTimeout(()=>{
+	/*setTimeout(()=>{
 			$('.set-bg').each(function() {
 
 				var bg = $(this).data('setbg');
 				$(this).css('background-image', 'url(' + bg + ')');
 			});
 		},
-			120 )
+			120 )*/
 
 
 

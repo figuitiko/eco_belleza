@@ -2,16 +2,31 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={"get",
+ *
+ *     },
+ *     itemOperations={"get",
+ *
+ *      },
+ *      normalizationContext={"groups"={"courses:read"}},
+ *      denormalizationContext={"groups"={"courses:write"}},
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"title": "partial"})
  * @ORM\Entity(repositoryClass=CourseRepository::class)
  * @Vich\Uploadable
  */
@@ -21,29 +36,30 @@ class Course
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"users:read","usersCourses:read","courses:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users:read","usersCourses:read","courses:read","lesson:read"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"users:read","usersCourses:read","courses:read"})
      */
     private $description;
 
 
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="courses")
-     */
-    private $users;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
+     * @Groups({"users:read","usersCourses:read","courses:read"})
      */
     private $image;
     /**
@@ -54,13 +70,45 @@ class Course
 
     /**
      * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="course")
+     * @Groups({"users:read","usersCourses:read","courses:read","lesson:read"})
      */
     private $lessons;
 
     /**
      * @ORM\OneToMany(targetEntity=Test::class, mappedBy="course")
+     * @Groups({"users:read","usersCourses:read","courses:read"})
      */
     private $tests;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     * @Groups({"users:read","usersCourses:read","courses:read"})
+     */
+    private $price;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="course")
+     * @Groups({"users:read","usersCourses:read","courses:read"})
+     */
+    private $userCourses;
+
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+
+
+
+
+
 
 
 
@@ -69,7 +117,11 @@ class Course
         $this->users = new ArrayCollection();
         $this->lessons = new ArrayCollection();
         $this->tests = new ArrayCollection();
+        $this->userCourses = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+
     }
+
 
     public function getId(): ?int
     {
@@ -90,7 +142,8 @@ class Course
 
     public function getDescription(): ?string
     {
-        return $this->description;
+
+        return   strip_tags($this->description);
     }
 
     public function setDescription(?string $description): self
@@ -102,31 +155,7 @@ class Course
 
 
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
 
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-        }
-
-        return $this;
-    }
 
 
 
@@ -224,6 +253,78 @@ class Course
     {
         return $this->image;
     }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserCourse[]
+     */
+    public function getUserCourses(): Collection
+    {
+        return $this->userCourses;
+    }
+
+    public function addUserCourse(UserCourse $userCourse): self
+    {
+        if (!$this->userCourses->contains($userCourse)) {
+            $this->userCourses[] = $userCourse;
+            $userCourse->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCourse(UserCourse $userCourse): self
+    {
+        if ($this->userCourses->contains($userCourse)) {
+            $this->userCourses->removeElement($userCourse);
+            // set the owning side to null (unless already changed)
+            if ($userCourse->getCourse() === $this) {
+                $userCourse->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+
+
 
 
 }

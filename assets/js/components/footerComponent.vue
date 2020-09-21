@@ -1,4 +1,6 @@
 <template>
+    <div>
+    <call-to-action v-if="!isLogin"></call-to-action>
     <footer class=" pb-0">
 
         <div class="footer-bottom">
@@ -14,15 +16,55 @@
             </div>
         </div>
     </footer>
+    </div>
 </template>
 
 <script>
+    import callToActionComponent from "./course/callToActionComponent";
+    import * as types from "../modules/types";
+    import {mapGetters} from  'vuex';
+
     export default {
         name: "footerComponent",
+        components: { 'call-to-action': callToActionComponent},
+
         data(){
            return  {
                  date: new Date().getFullYear()
             }
+        },
+        computed:{
+            ...mapGetters({
+                email: types.USER_EMAIL,
+                isLogin: types.IS_LOGIN,
+                userIri: types.USER_IRI,
+                userEmail: types.USER_EMAIL,
+                courseAdded: types.IS_ADDED_USER_COURSE,
+                courses: types.ALL_COURSES
+
+            })
+        },
+        mounted() {
+
+
+
+
+
+        },
+        /*watch: {
+            isLogin: function (val) {
+
+                if(val){
+                    this.$store.dispatch(types.ADD_COURSE, null);
+                    this.getAllCourses()
+                }
+
+
+            },
+        },*/
+
+        methods:{
+
         }
     }
 </script>
