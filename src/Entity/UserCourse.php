@@ -15,12 +15,12 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 /**
  * @ApiResource(
  *      attributes={"security"="is_granted('ROLE_USER')"},
- *     collectionOperations={"get",
+ *     collectionOperations={"get"={"security"="is_granted('ROLE_USER')"},
  *       "post"={"security"="is_granted('ROLE_USER')"}
  *      },
  *     itemOperations={"get",
- *     "put"={"security"="is_granted('ROLE_ADMIN') or object.user == user"},
- *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.user == user"},
+ *     "put"={"security"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *      },
  *      normalizationContext={"groups"={"usersCourses:read"}},
  *      denormalizationContext={"groups"={"usersCourses:write"}},

@@ -13,8 +13,8 @@
     width: 5%;
 }
  .invalid{
-    border: 1px solid red;
-    background-color: #ffc9aa;
+    border: 1px solid red!important;
+    background-color: #ffc9aa!important;
 
 }
 
@@ -31,21 +31,30 @@
     transform: translateX(-30%);
 }
 
+
 nav.main-menu  i{
     color: white;
     font-size: 28px;
 }
+nav.main-menu  i:hover{
+    color: #F8CF88;
+
+}
+
 nav.main-menu  span{
-    background-color: red;
+    background-color: white;
     width: 25px;
     height: 25px;
     min-width: 25px;
-    color: white;
+    color: #5ead4a;
     text-align: center;
     border-radius: 50%;
     display: block;
     margin-left: 20px;
     margin-bottom: -10px;
+}
+nav.main-menu  span:hover{
+    background-color: #F8CF88;
 }
 .contact-page{
     margin-top: 60px;
@@ -53,7 +62,7 @@ nav.main-menu  span{
 .want-it{
     width: 100%;
     color: white;
-    background-color: red;
+    background-color: #F8CF88;
     display: flex;
     align-items: center;
 
@@ -65,7 +74,7 @@ nav.main-menu  span{
 .view-it{
     width: 100%;
     color: white;
-    background-color: #17a2b8;
+    background-color: #5ead4a;
     display: flex;
     align-items: center;
 
@@ -73,6 +82,9 @@ nav.main-menu  span{
     height: 40px;
     cursor: pointer;
 
+}
+.page-item.active .page-link{
+    background-color: #5ead4a;
 }
 
 
@@ -255,10 +267,10 @@ nav.main-menu  span{
     display: inline-block;
     font-size: 18px;
     font-weight: 600;
-    color: #d82a4e;
+    color: #5ead4a;
     padding: 12px 10px 5px;
     margin: 0 10px;
-    border-bottom: 4px solid #d82a4e;
+    border-bottom: 4px solid #5ead4a;
     cursor: pointer;
 }
 .logout-btn {
@@ -271,7 +283,57 @@ nav.main-menu  span{
     font-weight: 600;
     font-size: 16px;
     position: relative;
-    color: #d82a4e;
+    color: #5ead4a;
     background: #fff;
 
+}
+.logout-btn:focus,
+.logout-btn:active,
+.logout-btn:hover{
+    color: white;
+    background-color: #5ead4a;
+}
+.my-register{
+     background-color: #5ead4a;
+}
+.my-register:disabled{
+    background-color: darkseagreen;
+}
+.my-register:hover{
+    background-color: greenyellow;
+}
+.my-reset{
+    background-color: #F8CF88;
+    border-color: darkorange;
+}
+.my-reset:hover{
+    background-color: orange;
+}
+
+.footer-menu li a{
+    color: #5ead4a!important; ;
+}
+.footer-menu li a:hover{
+    color: white!important;
+}
+.modal-title{
+    color:#5ead4a ;
+}
+.modal-body form{
+    color:#5ead4a ;
+}
+.btn-search{
+    background-color: #5ead4a!important;
+
+}
+.btn-search:hover{
+    background-color: white!important;
+    color:#F8CF88;
+}
+.single-lesson-resource{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
 }

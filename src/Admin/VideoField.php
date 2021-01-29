@@ -8,6 +8,7 @@ namespace App\Admin;
    use EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto;
    use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
    use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+   use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
    use Symfony\Component\Form\Extension\Core\Type\FileType;
    use Symfony\Component\Form\Extension\Core\Type\TextareaType;
    use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,11 +26,11 @@ namespace App\Admin;
 
                    // this is used in 'edit' and 'new' pages to edit the field contents
                    // you can use your own form types too
-                  ->setFormType(TextType::class)
-                   ->addCssClass('dropzone')
-                   ->setCustomOptions()
+                  ->setFormType(TextareaType::class)
+
+
                    //->setFormTypeOptions(['data'=>$propertyName])
-                 // ->setTemplatePath('admin/field/video.html.twig')
+                  ->setTemplatePath('admin/field/video.html.twig')
                    //->setFormType(TextareaType::class)
                    //->setCssClass('dropzone')
 

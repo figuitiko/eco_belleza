@@ -15,7 +15,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\CodeEditorType;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CourseCrudController extends AbstractCrudController
@@ -30,12 +33,12 @@ class CourseCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Curso')
             ->setEntityLabelInPlural('Cursos')
-            ->setSearchFields(['id', 'isPaypal', 'isMercadoPago','isApproved', 'createdAt']);
+            ->setSearchFields(['id', 'name', 'email']);
     }
     public function configureFields(string $pageName): iterable
     {
         $name = TextField::new('title');
-        $description = TextareaField::new('description');
+        $description = TextEditorField::new('description', 'Descripcion');
         $lessons = AssociationField::new('lessons');
        // $ean = TextField::new('ean');
         $price = NumberField::new('price')->addCssClass('text-right');
@@ -54,9 +57,9 @@ class CourseCrudController extends AbstractCrudController
         }
 
         return [
-            FormField::addPanel('Basic information'),
+            FormField::addPanel('Información Básica'),
             $name, $description, $lessons->autocomplete(),
-            FormField::addPanel('Product Details'),
+            FormField::addPanel('Detalles'),
             $price, $createdAt,
 
 

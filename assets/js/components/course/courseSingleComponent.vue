@@ -12,7 +12,8 @@
             <div class="course-info">
                 <div class="course-text">
                     <h5>{{title}}</h5>
-                    <p>{{descriptionExcerpt}}</p>
+
+
 
 
                 </div>
@@ -95,7 +96,11 @@
                 return this.imgUrl.trim();
             },
             imgUrlComplete(){
-                return encodeURIComponent( `url(${this.courseUploadUrl}${this.trimImgUrl})`);
+
+
+                return `url(${this.courseUploadUrl}${encodeURIComponent(this.trimImgUrl)})`;
+
+
             }
 
 

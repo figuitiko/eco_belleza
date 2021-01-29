@@ -64,7 +64,7 @@
             getAllCourses(){
                 this.axios.get(`/api/courses?page=${this.currentPage}`)
                     .then(response=>{
-
+                        console.log(response.data);
                         this.$store.dispatch(types.UPDATE_COURSE_TOTAL_ITEMS,response.data['hydra:totalItems'] )
                         this.$store.dispatch(types.ADD_COURSE,response.data['hydra:member'] );
                        /* response.data['hydra:member'].forEach(course=>{

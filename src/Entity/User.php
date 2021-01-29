@@ -18,12 +18,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
- *     attributes={"security"="is_granted('ROLE_USER')"},
+ *
  *     collectionOperations={
+ *     "post","get"
  *      },
  *     itemOperations={"get"={
  *           "normalization_context"={"groups"={"users:read","user:item:get"}}
  *          },
+ *      "put"={"security"="is_granted('ROLE_ADMIN') or object.getEmail() == user.getEmail()"},
  *
  *          },
  *     normalizationContext={"groups"={"users:read"}},
@@ -79,9 +81,14 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $userCourses;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
+     */
+    private $orders;
 
 
 
@@ -96,6 +103,7 @@ class User implements UserInterface
         $this->courses = new ArrayCollection();
         $this->course = new ArrayCollection();
         $this->userCourses = new ArrayCollection();
+        $this->orders = new ArrayCollection();
 
     }
 
@@ -233,6 +241,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($userCourse->getUser() === $this) {
                 $userCourse->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
             }
         }
 

@@ -11,7 +11,9 @@ knp_gaufrette:
         lesson_adapter_video:
             local:
                 directory: '%kernel.project_dir%/public/%app.path.lessons_videos%'
-
+        lesson_adapter_attach:
+            local:
+                directory: '%kernel.project_dir%/public/%app.path.lessons_attach%'
     filesystems:
         course_image_fs:
             adapter: course_adapter
@@ -19,6 +21,8 @@ knp_gaufrette:
             adapter: lesson_adapter_img
         lesson_video_fs:
             adapter: lesson_adapter_video
+        lesson_attach_fs:
+            adapter: lesson_adapter_attach
 
 vich_uploader:
     db_driver: orm
@@ -34,3 +38,6 @@ vich_uploader:
         lessons_img:
             uri_prefix: '%app.path.lessons_images%'
             upload_destination: lesson_image_fs
+        lessons_attach:
+            uri_prefix: '%app.path.lessons_attach%'
+            upload_destination: lesson_attach_fs

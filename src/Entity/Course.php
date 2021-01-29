@@ -16,8 +16,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource(
- *     attributes={"security"="is_granted('ROLE_USER')"},
+ *
  *     collectionOperations={"get",
+ *     "post"={"security"="is_granted('ROLE_USER')"}
  *
  *     },
  *     itemOperations={"get",
@@ -87,7 +88,7 @@ class Course
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="course")
+     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="course", cascade={"persist", "remove"})
      * @Groups({"users:read","usersCourses:read","courses:read"})
      */
     private $userCourses;
@@ -143,7 +144,7 @@ class Course
     public function getDescription(): ?string
     {
 
-        return   strip_tags($this->description);
+        return  htmlspecialchars_decode($this->description);
     }
 
     public function setDescription(?string $description): self

@@ -7,10 +7,12 @@ parameters:
     app.path.course_images: uploads/images/courses
     app.path.lessons_videos: uploads/videos/lessons
     app.path.lessons_images: uploads/images/lessons
+    app.path.lessons_attach: uploads/files/lessons
     mercado_pago_api: '%env(MERCADO_PAGO)%'
     mercado_pago_url: '%env(API_MP_URL)%'
     paypal_client_id: '%env(API_PAYPAL_CLIENT_ID)%'
     paypal_client_secret: '%env(API_PAYPAL_CLIENT_SECRET)%'
+    mail_owner: '%env(MAIL_OWNER)%'
 
 services:
     # default configuration for services in *this* file

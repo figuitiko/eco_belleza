@@ -1,0 +1,106 @@
+// header getters
+export const USER_EMAIL = 'header/USER_EMAIL';
+export const USER_PASSWORD = 'header/USER_PASSWORD';
+export const USER_NAME = 'header/USER_NAME';
+export const USER_COURSES = 'header/USER_COURSES';
+export const USER_IRI = 'header/USER_IRI';
+export const USER_ID = 'header/USER_ID';
+
+export const IS_LOGIN = 'header/IS_LOGIN';
+export const ERRORS_HEADERS_LOGIN = 'header/ERRORS_HEADERS_LOGIN';
+export const ERRORS_HEADERS_REGISTER = 'header/ERRORS_HEADERS_REGISTER';
+export const UPLOAD_COURSE_URL = 'header/UPLOAD_COURSE_URL';
+export const UPLOAD_LESSON_URL = 'header/UPLOAD_LESSON_URL';
+export const UPLOAD_VIDEO_URL = 'header/UPLOAD_VIDEO_URL';
+
+// courses getters
+
+export const ALL_COURSES = 'courses/ALL_COURSES';
+export const SEARCH_RESULTS_COURSES = 'courses/SEARCH_RESULTS_COURSES';
+export const COURSES_CURRENT_PAGE = 'courses/COURSES_CURRENT_PAGE';
+export const COURSES_TOTAL_ITEMS = 'courses/COURSES_TOTAL_ITEMS';
+
+
+
+//users courses getters
+
+export const ALL_USER_COURSES = 'usersCourses/ALL_USER_COURSES';
+export const ALL_USER_COURSES_PAYED = 'usersCourses/ALL_USER_COURSES_PAYED';
+export const IS_ADDED_USER_COURSE = 'usersCourses/IS_ADDED_USER_COURSE';
+export const IS_PAYED_USER_COURSE = 'usersCourses/IS_PAYED_USER_COURSE';
+export const USER_COURSE_USER_IRI = 'usersCourses/USER_COURSE_USER_IRI';
+export const USER_COURSE_COURSE_IRI = 'usersCourses/USER_COURSE_COURSE_IRI';
+export const TOTAL_PRICE = 'usersCourses/TOTAL_PRICE';
+
+// header actions
+
+export const UPDATE_USER_DATA_EMAIL = 'header/UPDATE_USER_DATA_EMAIL';
+export const UPDATE_USER_DATA_PASSWORD = 'header/UPDATE_USER_DATA_PASSWORD';
+export const UPDATE_USER_DATA_NAME = 'header/UPDATE_USER_DATA_NAME';
+export const UPDATE_USER_DATA_IRI = 'header/UPDATE_USER_DATA_IRI';
+export const UPDATE_USER_DATA_ID = 'header/UPDATE_USER_DATA_ID';
+export const ADD_USER_COURSE = 'header/ADD_USER_COURSE';
+export const IS_LOGIN_ACTION = 'header/IS_LOGIN_ACTION';
+export const ERRORS_HEADERS_LOGIN_ACTION = 'header/ERRORS_HEADERS__LOGIN_ACTION';
+export const ERRORS_HEADERS_REGISTER_ACTION = 'header/ERRORS_HEADERS_REGISTER_ACTION';
+
+// courses action
+export const ADD_COURSE = 'courses/ADD_COURSE';
+export const UPDATE_COURSE_CURRENT_PAGE = 'courses/UPDATE_COURSE_CURRENT_PAGE';
+export const UPDATE_COURSE_TOTAL_ITEMS = 'courses/UPDATE_COURSE_TOTAL_ITEMS';
+export const UPDATE_SEARCH_RESULTS_COURSES = 'courses/UPDATE_SEARCH_RESULTS_COURSES';
+
+// user_courses action
+
+export const ADD_USER_COURSES_ACTION = 'userCourses/ADD_USER_COURSES';
+
+export const ADD_USER_COURSES_PAYED_ACTION = 'userCourses/ADD_USER_COURSES_PAYED_ACTION';
+export const REMOVE_USER_COURSES_ACTION = 'userCourses/REMOVE_USER_COURSES_ACTION';
+export const RESET_USER_COURSES_ACTION = 'userCourses/RESET_USER_COURSES_ACTION';
+export const RESET_USER_COURSES_PAYED_ACTION = 'userCourses/RESET_USER_COURSES_PAYED_ACTION';
+export const IS_ADDED_USER_COURSE_ACTION = 'userCourses/IS_ADDED_USER_COURSE_ACTION';
+export const IS_PAYED_USER_COURSE_ACTION = 'userCourses/IS_PAYED_USER_COURSE_ACTION';
+export const ADD_USER_COURSE_ACTION_COURSE_IRI = 'userCourses/ADD_USER_COURSE_ACTION_COURSE_IRI';
+export const ADD_USER_COURSE_ACTION_USER_IRI = 'userCourses/ADD_USER_COURSE_ACTION_USER_IRI';
+export const UPDATE_TOTAL_PRICE_ACTION = 'userCourses/UPDATE_TOTAL_PRICE_ACTION';
+
+
+
+//header mutators
+
+export  const MUTATE_IS_LOGIN = 'header/MUTATE_IS_LOGIN';
+export  const MUTATE_ERRORS_HEADERS_LOGIN = 'header/MUTATE_ERRORS_HEADERS_LOGIN';
+export  const MUTATE_ERRORS_HEADERS_REGISTER = 'header/MUTATE_ERRORS_HEADERS_REGISTER';
+export  const MUTATE_USER_DATA_EMAIL = 'header/MUTATE_USER_DATA_EMAIL';
+export  const MUTATE_USER_DATA_PASSWORD= 'header/MUTATE_USER_DATA_PASSWORD';
+export  const MUTATE_USER_DATA_NAME= 'header/MUTATE_USER_DATA_NAME';
+export  const MUTATE_USER_DATA_IRI= 'header/MUTATE_USER_DATA_IRI';
+export  const MUTATE_USER_DATA_ID= 'header/MUTATE_USER_DATA_ID';
+export  const MUTATE_ADD_USER_COURSE= 'header/MUTATE_USER_COURSES';
+export  const MUTATE_RESET_USER_COURSE= 'header/MUTATE_RESET_USER_COURSE';
+
+
+
+//course mutator
+
+export  const MUTATE_ADD_COURSE= 'course/MUTATE_ALL_COURSES';
+export  const MUTATE_RESET_COURSES= 'course/MUTATE_RESET_COURSES';
+export  const MUTATE_COURSES_CURRENT_PAGE= 'course/MUTATE_COURSES_CURRENT_PAGE';
+export  const MUTATE_COURSE_TOTAL_ITEMS= 'course/MUTATE_COURSE_TOTAL_ITEMS';
+export  const MUTATE_SEARCH_RESULTS_COURSES= 'course/MUTATE_SEARCH_RESULTS_COURSES';
+
+
+//user_courses mutator
+
+export  const MUTATE_ADD_USER_COURSES= 'userCourses/MUTATE_ADD_USER_COURSES';
+export  const MUTATE_ADD_USER_COURSES_PAYED= 'userCourses/MUTATE_ADD_USER_COURSES_PAYED';
+export  const MUTATE_REMOVE_USER_COURSES= 'userCourses/MUTATE_REMOVE_USER_COURSES';
+export  const MUTATE_RESET_USER_COURSES= 'userCourses/MUTATE_RESET_USER_COURSES';
+export  const MUTATE_RESET_USER_COURSE_PAYED= 'userCourses/MUTATE_RESET_USER_COURSE_PAYED';
+export  const MUTATE_USER_COURSE_IS_ADDED= 'userCourses/MUTATE_USER_COURSE_IS_ADDED';
+export  const MUTATE_USER_COURSE_IS_PAYED= 'userCourses/MUTATE_USER_COURSE_IS_PAYED';
+export  const MUTATE_USER_COURSE_COURSE_IRI= 'userCourses/MUTATE_USER_COURSE_COURSE_IRI';
+export  const MUTATE_USER_COURSE_USER_IRI= 'userCourses/MUTATE_USER_COURSE_USER_IRI';
+export  const MUTATE_TOTAL_PRICE= 'userCourses/MUTATE_TOTAL_PRICE';
+
+

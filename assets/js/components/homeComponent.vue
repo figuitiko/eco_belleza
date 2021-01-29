@@ -35,12 +35,13 @@
         mounted() {
 
             let userJson = JSON.parse(this.user);
-            console.log(this.user);
+            console.log(userJson);
             if( userJson){
 
                 this.$store.dispatch(types.UPDATE_USER_DATA_NAME,userJson.name );
                 this.$store.dispatch(types.UPDATE_USER_DATA_EMAIL,userJson.email );
                 this.$store.dispatch(types.ADD_USER_COURSES_ACTION, userJson.email )
+                this.$store.dispatch(types.UPDATE_USER_DATA_ID,userJson.id );
                 this.$store.dispatch(types.UPDATE_USER_DATA_IRI,`/api/users/${userJson.id}` );
                 /* userJson.courses.forEach(course=>{
                      this.$store.dispatch(types.ADD_USER_COURSE,course );

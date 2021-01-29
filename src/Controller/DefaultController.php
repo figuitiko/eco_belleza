@@ -50,6 +50,10 @@ class DefaultController extends AbstractController
      * @var UserCourseRepository
      */
     private $userCourseRepository;
+    /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
 
 
     public function __construct(Curl $curl,
@@ -57,7 +61,8 @@ class DefaultController extends AbstractController
                                 PaypalPayment $paypalPayment,
                                 RouterInterface $router,
                                 OrderRepository $orderRepository,
-                                UserCourseRepository $userCourseRepository )
+                                UserCourseRepository $userCourseRepository,
+                                \Swift_Mailer $mailer)
     {
 
         $this->curl = $curl;
@@ -67,6 +72,7 @@ class DefaultController extends AbstractController
         $this->router = $router;
         $this->orderRepository = $orderRepository;
         $this->userCourseRepository = $userCourseRepository;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -323,8 +329,25 @@ class DefaultController extends AbstractController
          * @var UserCourse $userCourse
          */
         foreach ($usersCourses as  $userCourse){
+          $user =  $this->getUser();
+          $user->getEmail();
+          $emailSender= $this->getParameter('mail_owner');
+
+            $message = (new \Swift_Message('Eco Belleza'))
+                        ->setFrom($emailSender)
+                        ->setTo( $user->getEmail())
+                        ->setBody(
+                            $this->renderView('emails/course.html.twig',
+                                    ['userCourse'=>$userCourse,
+                                        'user'=>$user])
+                        );
+            $this->mailer->send($message);
             $userCourse->setIsPayed($isPayed);
             $this->userCourseRepository->updateUserCourse($userCourse);
         }
     }
+
+
+
+
 }

@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ContactData;
 use App\Entity\Course;
 use App\Entity\Lesson;
 use App\Entity\Order;
 use App\Entity\Question;
 use App\Entity\Reply;
 use App\Entity\User;
+use App\Entity\UserCourse;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -42,6 +44,9 @@ class DashboardController extends AbstractDashboardController
         //yield MenuItem::linkToCrud('Respuestas', 'fa fa-reply', Reply::class);
         yield MenuItem::linkToCrud('Ordenes', 'fa fa-shopping-cart', Order::class);
         yield MenuItem::linkToCrud('Usuarios', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Usuarios + Cursos', 'fa fa-handshake-o', UserCourse::class);
+        yield MenuItem::linkToCrud('Contactos', 'fa fa-user', ContactData::class);
+        yield MenuItem::linkToLogout('Salir', 'fa fa-sign-out');
 
     }
 }

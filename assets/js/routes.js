@@ -12,6 +12,8 @@ import approvedComponent from "./components/approvedComponent";
 import courseDetailsComponent from "./components/course/courseDetailsComponent";
 import lessonSingleComponent from "./components/lessons/lessonSingleComponent";
 import searchResults from "./components/searchResults";
+import profileComponent from "./components/profile/profileComponent";
+
 
 
 
@@ -28,6 +30,7 @@ const router = new VueRouter({
 
         {path:'/contact', name:'contact', component:contactComponent},
         {path:'/cart', name:'cart', component:cartComponent},
+        {path:'/profile', name:'profile', component:profileComponent},
 
     ]
 });

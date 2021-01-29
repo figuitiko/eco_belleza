@@ -19,7 +19,7 @@
                             <div class="course-meta">
                                 <div class="cm-info">
                                     <h6>Estudiantes</h6>
-                                    <p>{{amountStudents}} Estudiantes Registrados</p>
+<!--                                    <p>{{amountStudents}} Estudiantes Registrados</p>-->
                                 </div>
                             </div>
                             <!--<div class="course-meta">
@@ -66,7 +66,11 @@
                 <div class="col-lg-10 offset-lg-1 course-list">
                     <div class="cl-item">
                         <h4>Descripción del Curso</h4>
-                        <p>{{course.description}}</p>
+                        <div v-html="course.description"></div>
+
+
+
+
                     </div>
                    <!-- <div class="cl-item">
                         <h4>Certification</h4>
@@ -89,6 +93,7 @@
     import * as types from "../../modules/types";
     import listLessonsComponent from "../lessons/listLessonsComponent";
     import router from "../../routes";
+    import HtmlPreview from 'vue-html-viewer';
 
     export default {
         name: "courseDetailsComponent",
@@ -216,7 +221,24 @@
                     console.log(e.messages)
                 })
             },
+
+        },
+        filters:{
+            escapeHtml: function (value) {
+                if(!value) return '';
+                value.toString();
+                var map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+
+                return value.replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
         }
+
     }
 </script>
 

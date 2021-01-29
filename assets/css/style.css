@@ -164,6 +164,7 @@ ol {
 .site-btn {
 	display: inline-block;
 	min-width: 130px;
+	height: 50px;
 	text-align: center;
 	border: none;
 	padding: 15px 10px;
@@ -172,33 +173,35 @@ ol {
 	position: relative;
 	color: #fff;
 	cursor: pointer;
-	background: #d82a4e;
+	background: #5ead4a;
 }
 .site-btn-register {
 	display: inline-block;
 	min-width: 130px;
+	height: 50px;
 	text-align: center;
 	border: none;
 	padding: 15px 10px;
 	font-weight: 600;
 	font-size: 16px;
 	position: relative;
-	color: #d82a4e;
+	color: #5ead4a;
 	cursor: pointer;
 	background: #fff;
 }
 .banner-section{
-	border-bottom: 3px solid #d82a4e;
+	border-bottom: 3px solid #F8CF88;
 	margin-top: 60px;
 }
-
+.site-btn:active,
 .site-btn:hover {
-	color: #d82a4e;
+	color: #5ead4a;
 	background: #fff;
 }
+.site-btn:active,
 .site-btn-register:hover {
 	color: #fff;
-	background: #d82a4e;
+	background: #5ead4a;
 }
 .site-btn.btn-dark {
 	background: #000;
@@ -282,7 +285,9 @@ ol {
 	width: 100%;
 	top: 0;
 	left: 0;
-	padding-top: 60px;
+	padding-top: 10px;
+	background-color: #3A3A3A;
+
 }
 
 .site-logo {
@@ -300,14 +305,16 @@ ol {
 .main-menu ul li a {
 	display: inline-block;
 	font-size: 16px;
-	color: #fff;
+
+	color: white;
 	margin-left: 45px;
 	font-weight: 600;
 	padding: 20px 0 5px;
 }
 
 .main-menu ul li a:hover {
-	color: #d82a4e;
+	color: #F8CF88;
+
 }
 
 .header-btn {
@@ -407,7 +414,7 @@ ol {
 ---------------------*/
 
 .search-warp {
-	background: #d82a4e;
+	background: #F8CF88;
 	padding-top: 60px;
 	padding-bottom: 50px;
 }
@@ -450,6 +457,7 @@ ol {
 .search-section.ss-other-page .search-warp {
 	position: relative;
 	padding: 60px 0;
+	margin-top: 50px;
 }
 
 .search-section.ss-other-page .section-title {
@@ -468,7 +476,7 @@ ol {
 
 .search-section.ss-other-page .section-title h2 span {
 	display: inline-block;
-	background: #d82a4e;
+	background: #F8CF88;
 	padding: 20px 60px 10px;
 }
 
@@ -504,7 +512,7 @@ ol {
 	font-size: 14px;
 	color: #fff;
 	font-weight: 600;
-	background: #d82a4e;
+	background: #5ead4a;
 	display: inline-block;
 	padding: 13px 19px;
 	margin: 14px;
@@ -679,7 +687,7 @@ ol {
 .contact-form input[type=text]:focus,
 .contact-form input[type=email]:focus,
 .contact-form textarea:focus {
-	border-bottom: 2px solid #d82a4e;
+	border-bottom: 2px solid #5ead4a;
 }
 
 .signup-form input[type=file],
@@ -810,7 +818,7 @@ ol {
 
 .footer-bottom {
 	overflow: hidden;
-	background: #edf4f6;
+	background: #F8CF88;
 	padding: 20px 0;
 	margin-top: 50px;
 }
@@ -855,7 +863,7 @@ ol {
 	float: left;
 	font-size: 14px;
 	font-weight: 600;
-	color: #474747;
+	color: #5ead4a;
 }
 
 /*------------------
@@ -864,12 +872,13 @@ ol {
 =======================*/
 
 .page-info-section {
-	height: 380px;
-	background-image: url("../img/page-bg/1.jpg");
+	height:  443px;
+	background: url("../img/page-bg/bg_irina_new.jpg") no-repeat center bottom;
 	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: top center;
+	margin-top: 110px;
+
 }
+
 
 .site-breadcrumb {
 	padding-top: 215px;
@@ -885,7 +894,7 @@ ol {
 }
 
 .site-breadcrumb a {
-	color: #fff;
+	color: #F8CF88;
 	position: relative;
 }
 
@@ -894,11 +903,11 @@ ol {
 	content: "/";
 	right: -6px;
 	top: 0;
-	color: #fff;
+	color: #F8CF88;
 }
 
 .site-breadcrumb span {
-	color: #d82a4e;
+	color: #F8CF88;
 }
 
 /*------------------
@@ -1206,7 +1215,7 @@ ol {
 ---------------------*/
 
 .contact-form-warp {
-	background: #d82a4e;
+	background: #F8CF88;
 	padding: 45px 47px;
 }
 
@@ -1522,6 +1531,10 @@ ol {
 	.course-meta {
 		padding: 5px 20px;
 	}
+	.page-info-section{
+		margin-top: 0;
+	}
+
 }
 
 /* Tablet :768px. */
@@ -1592,6 +1605,9 @@ ol {
 	.course-meta:nth-child(2) {
 		border-right: none;
 	}
+	.page-info-section{
+		margin-top: 40px;
+	}
 }
 
 /* Large Mobile :480px. */
@@ -1608,7 +1624,7 @@ ol {
 	}
 	.nav-switch {
 		display: block;
-		float: right;
+		float: left;
 		color: #333;
 		font-size: 25px;
 		width: 40px;
@@ -1674,8 +1690,35 @@ ol {
 		margin-top: 80px;
 	}
 	.header-btn-position{
-		margin-left: 200px;
-		margin-top: 200px;
+		margin-left: 300px;
+		margin-top: -40px;
+		margin-bottom: 20px;
+	}
+	.header-btn-position a{
+		font-size: 16px;
+		color: white;
+		margin-left: 45px;
+		font-weight: 600;
+		padding: 20px 0 5px;
+		position: absolute;
+		top: -140px ;
+		left: 120px;
+	}
+	.header-btn-position a span{
+		background-color: white;
+		width: 25px;
+		height: 25px;
+		min-width: 25px;
+		color: #5ead4a;
+		text-align: center;
+		border-radius: 50%;
+		display: block;
+		margin-left: 20px;
+		margin-bottom: -10px;
+	}
+	.header-btn-position a i{
+		color: white;
+		font-size: 28px;
 	}
 	.site-breadcrumb{
 		padding-top: 315px;
@@ -1695,9 +1738,7 @@ ol {
 	.search-section.ss-other-page .search-warp {
 		padding: 30px;
 	}
-	.search-section.ss-other-page .section-title h2 {
-		background: #d82a4e;
-	}
+
 	.course-item.featured-course .course-thumb {
 		position: relative;
 		width: 100%;
@@ -1756,8 +1797,8 @@ ol {
 		margin-left: 200px;
 	}
 	.header-btn-position{
-		margin-left: 60px;
-		margin-top: 150px;
+		margin-left: 260px;
+
 	}
 }
 
@@ -1805,10 +1846,11 @@ ol {
 	}
 	.logout-btn{
 
-		margin-left: 40px;
+		margin-left: 100px;
 	}
 	.header-btn-position{
-		margin-left: 0;
-		margin-top: 150px;
+		margin-left: 100px;
+
 	}
+
 }

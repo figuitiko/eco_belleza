@@ -41,6 +41,12 @@ import cartComponent from "./components/cartComponent";
 import approvedComponent from "./components/approvedComponent";
 import courseDetailsComponent from "./components/course/courseDetailsComponent";
 import searchResults from "./components/searchResults";
+import registerComponent from "./components/form/registerComponent";
+
+
+import VueCoreVideoPlayer from 'vue-core-video-player'
+import vueVimeoPlayer from 'vue-vimeo-player'
+import profileComponent from "./components/profile/profileComponent";
 
 
 
@@ -59,11 +65,15 @@ Vue.component('contact',contactComponent );
 Vue.component('cart',cartComponent );
 Vue.component('lesson-single',lessonSingleComponent);
 Vue.component('search-results',searchResults);
+Vue.component('the-profile', profileComponent)
+Vue.component('register-component', registerComponent)
 
 
-import VueCoreVideoPlayer from 'vue-core-video-player'
+
 
 Vue.use(VueCoreVideoPlayer)
+Vue.use(vueVimeoPlayer)
+
 
 Vue.use(VueAxios,axios);
 axios.defaults.headers.common['Content-Type'] = 'application/ld+json';

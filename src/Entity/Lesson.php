@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LessonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -15,7 +17,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     collectionOperations={"get",
  *
  *      },
- *     itemOperations={"get",
+ *     itemOperations={"get"={"security"="is_granted('LESSON_VIEW',object)",
+ *     },
  *
  *      },
  *     normalizationContext={"groups"={"lesson:read"}},
@@ -88,13 +91,32 @@ class Lesson
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"courses:read","lesson:read","lesson:write"})
+     */
+    private $embedCode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"courses:read","lesson:read","lesson:write"})
+     */
+    private $videoPassword;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Attachment::class, mappedBy="lesson", cascade={"persist", "remove"})
+     * @Groups({"courses:read","lesson:read","lesson:write"})
+     */
+    private $attachments;
+
 
 
 
  public function __construct()
-     {
-         $this->createdAt = new \DateTimeImmutable();
-     }
+                                            {
+                                                $this->createdAt = new \DateTimeImmutable();
+                                                $this->attachments = new ArrayCollection();
+                                            }
 
     public function getId(): ?int
     {
@@ -218,6 +240,61 @@ class Lesson
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getEmbedCode(): ?string
+    {
+        return $this->embedCode;
+    }
+
+    public function setEmbedCode(?string $embedCode): self
+    {
+        $this->embedCode = $embedCode;
+
+        return $this;
+    }
+
+    public function getVideoPassword(): ?string
+    {
+        return $this->videoPassword;
+    }
+
+    public function setVideoPassword(string $videoPassword): self
+    {
+        $this->videoPassword = $videoPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Attachment[]
+     */
+    public function getAttachments(): Collection
+    {
+        return $this->attachments;
+    }
+
+    public function addAttachment(Attachment $attachment): self
+    {
+        if (!$this->attachments->contains($attachment)) {
+            $this->attachments[] = $attachment;
+            $attachment->setLesson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttachment(Attachment $attachment): self
+    {
+        if ($this->attachments->contains($attachment)) {
+            $this->attachments->removeElement($attachment);
+            // set the owning side to null (unless already changed)
+            if ($attachment->getLesson() === $this) {
+                $attachment->setLesson(null);
+            }
+        }
 
         return $this;
     }

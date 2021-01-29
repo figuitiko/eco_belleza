@@ -14,23 +14,23 @@
                     <div class="col-md-12 text-center"> <span style=" color:white" v-if="isLogin" > Estas logeado  como {{userName}}</span></div>
                     <div class="col-lg-3 col-md-3">
                         <div class="site-logo">
-                            <img src="img/logo.png" alt="">
+                            <router-link to="/"><img src="img/logo_new.png" alt="" width="60%"></router-link>
+
                         </div>
                         <div class="nav-switch" v-display-menu>
                             <i class="fa fa-bars"></i>
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7 ">
-
-
-
-
                         <nav class="main-menu">
                             <ul>
                                 <li> <router-link to="/">Inicio</router-link></li>
 <!--                                <li><a href="#">About us</a></li>-->
                                 <li v-if="isLogin">
                                 <router-link to="/my-courses">Mis Cursos</router-link>
+                                </li>
+                                <li v-if="isLogin">
+                                    <router-link to="/profile">Mi Perfil</router-link>
                                 </li>
                                 <li> <router-link to="/contact">Contáctenos</router-link></li>
                                 <li v-if="isLogin" class="buy-car">
@@ -51,10 +51,17 @@
                                 </li>
                             </ul>
                         </nav>
+
                     </div>
 
                     <div class="col-lg-2 col-md-2 d-flex flex-row header-btn-position">
+                        <router-link to="/cart" class="  d-md-none">
 
+                            <span>{{usersCourses.length}}</span>
+                            <i  class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+
+                        </router-link>
 
                         <template v-if="!isLogin">
                             <b-button    class="site-btn-register " v-b-modal.modal-2  >Registrarse</b-button>
@@ -69,7 +76,7 @@
             </div>
         </header>
         <!-- Page info -->
-        <div class="page-info-section set-bg" data-setbg="img/page-bg/1.jpg" >
+        <div class="page-info-section set-bg" data-setbg="img/page-bg/bg_irina_new.jpg" >
             <div class="container">
                 <div class="site-breadcrumb">
 
@@ -87,7 +94,7 @@
 
                     <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" :class="{invalidLabel: $v.emailValue.$error}">Email address</label>
+                            <label for="exampleInputEmail1" :class="{invalidLabel: $v.emailValue.$error}">Correo Eléctronico</label>
                             <input v-model="emailValue"
                                    type="email"
                                    class="form-control"
@@ -120,10 +127,10 @@
                     <template v-slot:modal-footer="{  cancel }">
 
                         <!-- Emulate built in modal footer ok and cancel button actions -->
-                        <b-button size="sm" variant="success" @click="jsonLogin()" :disabled="checkFormValid">
+                        <b-button size="sm" class="my-register" variant="success" @click="jsonLogin()" :disabled="checkFormValid">
                             Entrar
                         </b-button>
-                        <b-button size="sm" variant="danger" @click="cancel()">
+                        <b-button size="sm" variant="danger" class="my-reset" @click="cancel()">
                             Cancel
                         </b-button>
                         <!-- Button with custom close trigger value -->
@@ -131,9 +138,9 @@
                     </template>
                 </b-modal>
 
-                <b-modal id="modal-2" title="Registrarse" ok-only ok-variant="secondary" ok-title="Cancel">
+                <b-modal id="modal-2" title="Registrarste" ok-only ok-variant="secondary" ok-title="Cancel">
 
-                <register-component></register-component>
+                <register-component :method="'post'"></register-component>
                 </b-modal>
 
         <search-box></search-box>
@@ -144,7 +151,7 @@
 <script>
     import {mapGetters} from  'vuex'
     import * as types from '../modules/types';
-    import registerComponent from "./form/registerComponent";
+
     import {required, email, maxLength, numeric, minLength, sameAs} from 'vuelidate/lib/validators';
     import searchBoxComponent from "./course/searchBoxComponent";
     import {mapActions} from 'vuex';
@@ -152,7 +159,7 @@
     export default {
 
         name: "headerComponent",
-        components:{registerComponent,  'search-box': searchBoxComponent},
+        components:{  'search-box': searchBoxComponent},
         data(){
             return {
                 rememberMe: false,

@@ -14,8 +14,9 @@
                             <div class="tab-content">
                                 <div class="row">
                                     <div class="col-md-11 border-right ">
-                                        <h3>Descripcion</h3>
-                                        {{lesson.description}}
+                                        <h3>{{lesson.title}}</h3>
+
+
                                     </div>
                                     <div class="col-md-1 actions-lesson">
 

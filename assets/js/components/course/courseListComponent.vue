@@ -9,7 +9,7 @@
             </div>
 
 
-            <div class="row course-items-area" v-if="courses.length >=1"  >
+            <div class="row course-items-area justify-content-center" v-if="courses.length >=1"  >
 
                 <!-- course -->
 

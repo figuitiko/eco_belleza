@@ -1,0 +1,51 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    app.path.course_images: uploads/images/courses
+    app.path.lessons_videos: uploads/videos/lessons
+    app.path.lessons_images: uploads/images/lessons
+    mercado_pago_api: '%env(MERCADO_PAGO)%'
+    mercado_pago_url: '%env(API_MP_URL)%'
+    paypal_client_id: '%env(API_PAYPAL_CLIENT_ID)%'
+    paypal_client_secret: '%env(API_PAYPAL_CLIENT_SECRET)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    # config/packages/vich_uploader.yaml
+    app.rememberme.services:
+        alias: security.authentication.rememberme.services.simplehash.main
+        public: true
+    App\EventListener\AuthAfterRegister:
+        tags:
+            - { name: 'doctrine.event_subscriber' }
+
+
+        # This section enables autowiring of the Remember Me Service
+    Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface: '@app.rememberme.services'
+
+    App\EventListener\CustomLogoutListener:
+        tags:
+            - name: kernel.event_subscriber
+              dispatcher: security.event_dispatcher.main
+

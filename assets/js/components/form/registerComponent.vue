@@ -1,7 +1,7 @@
 <template>
 
         <div>
-
+            <b-alert v-if="isUpdated" variant="success" show>Datos actualizados</b-alert>
             <b-form @submit="onSubmit($event)" @reset="onReset"  >
                 <b-form-group
 
@@ -38,6 +38,7 @@
                     ></b-form-input>
                     <small class="alert-danger" v-if="!$v.usernameValue.required">El nombre de usuario es requerido</small>
                 </b-form-group>
+                <template v-if="changeIsOnMethod">
                 <b-form-group id="input-group-3" label="Su contraseña" label-for="input-2" :class="{invalidLabel: $v.passwordValue.$error}">
                     <b-form-input
                             type="password"
@@ -64,10 +65,11 @@
                     <small class="alert-danger" v-if="!$v.secondPassword.required">La contraseña de usuario es requerido</small>
                     <small class="alert-danger" v-if="!$v.secondPassword.sameAsPassword">No son iguales las contraseñas</small>
                 </b-form-group>
-
-
-                <b-button type="submit" :disabled="checkFormValid" variant="primary">Enviar</b-button>
-                <b-button type="reset" variant="danger">Resetear</b-button>
+                </template>
+                <b-button v-if="method === 'put' "class="btn btn-primary" type="button" @click="enablePass()" variant="primary"> {{textOnPass}}</b-button>
+                <b-button v-if="method === 'post' " class="my-register" type="submit" :disabled="checkFormValid" variant="primary">Registrar</b-button>
+                <b-button v-if="method === 'put' "class="my-register" type="submit"  variant="primary">Actualizar</b-button>
+                <b-button v-if="method === 'post' " class="my-reset" type="reset" variant="danger">Resetear</b-button>
             </b-form>
 
         </div>
@@ -82,9 +84,13 @@
 
     export default {
         name: "registerComponent",
+        props:['method'],
         data() {
             return {
-               secondPassword: ''
+               secondPassword: '',
+                isUpdated: false,
+                isVisiblePass: false
+
             }
         },
         computed:{
@@ -124,7 +130,24 @@
                     || this.$v.secondPassword.$invalid
                     || (this.errors !== ''));
 
-            }
+            },
+            changeIsOnMethod(){
+                if(this.method === 'post' || this.isVisiblePass ){
+
+                    return true;
+                }
+            },
+            textOnPass(){
+                if(this.isVisiblePass){
+                    return 'Ocultar Contraseña';
+                }else{
+                    return 'Cambiar Contraseña'
+                }
+            },
+
+            ...mapGetters({
+                userId: types.USER_ID,
+            })
         },
         validations:{
             emailValue:{
@@ -147,20 +170,36 @@
         methods: {
             onSubmit(evt) {
                 evt.preventDefault();
+                if(this.method === 'post'){
+                    this.axios.post('/api/users', {
+                        name: this.$store.getters[types.USER_NAME],
+                        email: this.$store.getters[types.USER_EMAIL],
+                        password: this.$store.getters[types.USER_PASSWORD]
+                    }).then(response =>{
+                        console.log(response);
 
-                this.axios.post('/api/users', {
-                    name: this.$store.getters[types.USER_NAME],
-                    email: this.$store.getters[types.USER_EMAIL],
-                    password: this.$store.getters[types.USER_PASSWORD]
-                }).then(response =>{
-                    console.log(response);
+                        this.$bvModal.hide('modal-2');
+                        this.$store.dispatch(types.IS_LOGIN_ACTION);
+                        this.$store.dispatch(types.UPDATE_USER_DATA_IRI, response.data['@id']);
+                        this.$store.dispatch(types.UPDATE_USER_DATA_ID, response.data.id);
 
-                    this.$bvModal.hide('modal-2');
-                    this.$store.dispatch(types.IS_LOGIN_ACTION);
-                    this.$store.dispatch(types.UPDATE_USER_DATA_IRI, response.data['@id']);
-                    this.$store.dispatch(types.UPDATE_USER_DATA_ID, response.data.id);
+                    })
+                }
+                if(this.method === 'put'){
+                    this.axios.put(`/api/users/${this.userId}`, {
+                        name: this.$store.getters[types.USER_NAME],
+                        email: this.$store.getters[types.USER_EMAIL],
+                        password: this.$store.getters[types.USER_PASSWORD]
+                    }).then(response =>{
+                        console.log(response);
+                        this.isUpdated = true;
+                        setTimeout(()=>{
+                            this.isUpdated = false
+                        }, 2000)
 
-                })
+                    })
+                }
+
             },
             onReset() {
                 this.$store.dispatch(types.ERRORS_HEADERS_REGISTER_ACTION, '');
@@ -179,7 +218,8 @@
             checkEmail(email){
                 this.axios.get(`/api/users?email=${email}&page=1`)
                         .then(response=>{
-                            console.log(response.data['hydra:totalItems']);
+                            console.log(response);
+                           // console.log(response.data['hydra:totalItems']);
                             if(response.data['hydra:totalItems'] !== 0){
                                 this.$store.dispatch(types.ERRORS_HEADERS_REGISTER_ACTION, 'Este correo ya está registrado');
 
@@ -189,6 +229,10 @@
                         })
 
 
+            },
+            enablePass(){
+                console.log('i am here');
+                this.isVisiblePass = !this.isVisiblePass;
             }
 
         }

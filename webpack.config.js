@@ -79,7 +79,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     //.enableSassLoader()
     .enableVueLoader(()=>{},{

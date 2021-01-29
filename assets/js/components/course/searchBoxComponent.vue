@@ -11,7 +11,7 @@
                         <form class="course-search-form">
                             <input type="text" placeholder="Curso" v-model="title">
 
-                            <button class="site-btn btn-dark" @click.prevent="getSearch">Buscar Curso</button>
+                            <button class="site-btn btn-search" @click.prevent="getSearch">Buscar Curso</button>
                         </form>
                     </div>
                 </div>
