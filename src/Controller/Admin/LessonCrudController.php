@@ -7,6 +7,7 @@ use App\Form\AttachmentType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
@@ -37,6 +38,7 @@ class LessonCrudController extends AbstractCrudController
         $createdAt = DateTimeField::new('createdAt');
         $emBedCode = TextField::new('embedCode','Código del Video');
         $videoPassword = TextField::new('videoPassword','Contraseña de Video');
+        $isVisible = BooleanField::new('isVisible','Es visible');
 
         $attachments = CollectionField::new('attachments', 'Ficheros')
             ->setEntryType(AttachmentType::class)
@@ -52,7 +54,7 @@ class LessonCrudController extends AbstractCrudController
 
         return [
             FormField::addPanel('Basic information'),
-            $title, $description,$course,$emBedCode,$videoPassword,
+            $title, $description,$course, $isVisible, $emBedCode,$videoPassword,
             FormField::addPanel('Product Details'),
              $createdAt,
 

@@ -131,10 +131,16 @@
 
                                         item = {...response.data}
                                         item.isActive = true;
-                                        this.otherLessons.push(item);
+                                        if(item.isVisible){
+                                            this.otherLessons.push(item);
+                                        }
+
                                     }else{
                                         item.isActive = false;
-                                        this.otherLessons.push(item);
+                                        /*if(item.isVisible) {
+                                            this.otherLessons.push(item);
+                                        }*/
+
                                     }
 
 

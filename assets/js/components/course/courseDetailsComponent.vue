@@ -162,7 +162,10 @@
 
                                 if(this.isLogin){
                                     if((item.course === response.data['@id'])&&(item.user === this.userIri)){
-                                        this.lessons = response.data.lessons;
+
+                                         let lessons= response.data.lessons.filter(lesson => lesson.isVisible === true);
+                                            this.lessons = lessons;
+
                                     }
                                 }
 

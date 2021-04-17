@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ApiResource(
@@ -24,6 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"lesson:read"}},
  *     denormalizationContext={"groups"={"lesson:write"}},
  * )
+ * @ApiFilter(BooleanFilter::class, properties={"isVisible"})
  * @ORM\Entity(repositoryClass=LessonRepository::class)
  * @Vich\Uploadable
  */
@@ -109,14 +112,20 @@ class Lesson
      */
     private $attachments;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"courses:read","lesson:read","lesson:write"})
+     */
+    private $isVisible;
+
 
 
 
  public function __construct()
-                                            {
-                                                $this->createdAt = new \DateTimeImmutable();
-                                                $this->attachments = new ArrayCollection();
-                                            }
+                                                     {
+                                                         $this->createdAt = new \DateTimeImmutable();
+                                                         $this->attachments = new ArrayCollection();
+                                                     }
 
     public function getId(): ?int
     {
@@ -295,6 +304,18 @@ class Lesson
                 $attachment->setLesson(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsVisible(): ?bool
+    {
+        return $this->isVisible;
+    }
+
+    public function setIsVisible(bool $isVisible): self
+    {
+        $this->isVisible = $isVisible;
 
         return $this;
     }
